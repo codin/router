@@ -8,10 +8,7 @@ use Psr\Http\Message\RequestInterface;
 
 class Matcher implements MatcherInterface
 {
-    /**
-     * @var RouterInterface
-     */
-    protected $router;
+    protected RouterInterface $router;
 
     public function __construct(RouterInterface $router)
     {
@@ -35,7 +32,7 @@ class Matcher implements MatcherInterface
 
     protected function parse(string $path): callable
     {
-        $pattern = '~(?<segments>\{(?<params>.+)(\:(?<types>.+))?\})~';
+        $pattern = '~(?<segments>\{(?<params>[^:]+)(\:(?<types>[^\}]+))?\})~';
         $matches = \preg_match_all($pattern, $path, $captures);
 
         if (false === $matches) {
