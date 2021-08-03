@@ -35,7 +35,7 @@ class Route implements RouteInterface
     public function __construct(string $method, string $path, $controller, array $params = [])
     {
         $this->method = \strtoupper($method);
-        $this->path = \rtrim($path, '/');
+        $this->path = \rtrim($path, '/') ?: '/';
         $this->controller = $controller;
         $this->params = $params;
     }
