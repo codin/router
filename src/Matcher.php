@@ -32,7 +32,7 @@ class Matcher implements MatcherInterface
 
     protected function parse(string $path): callable
     {
-        $pattern = '~(?<segments>\{(?<params>[^:]+)(\:(?<types>[^\}]+))?\})~';
+        $pattern = '~(?<segments>\{(?<params>[^:]+)(\:(?<types>.+))?\})~';
         $matches = \preg_match_all($pattern, $path, $captures);
 
         if (false === $matches) {
